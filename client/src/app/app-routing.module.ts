@@ -13,11 +13,6 @@ const routes: Routes = [
   {path:'lists',component: ListsComponent},
   {path:'messages',component: MessagesComponent},
   {path:'**',component: HomepageComponent,pathMatch:'full'},
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 208cfe55ccef7a93f0d7df461fd1583bd02af5bf
 ];
 
 @NgModule({
