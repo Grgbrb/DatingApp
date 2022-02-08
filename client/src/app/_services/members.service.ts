@@ -9,6 +9,7 @@ import { Member } from '../_models/member';
   providedIn: 'root'
 })
 export class MembersService {
+
   baseUrl = environment.apiUrl;
   members: Member[] = [];
 
@@ -39,6 +40,15 @@ export class MembersService {
       })
     );
 
+  }
+
+  setMainPhoto(photoId: number){
+    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
+
+  }
+
+  deletePhoto(photoId: number){
+    return this.http.delete(this.baseUrl + 'users/delete-photo/'+ photoId);
   }
 
 }
