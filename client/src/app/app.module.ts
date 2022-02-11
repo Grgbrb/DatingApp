@@ -42,7 +42,8 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     MemberEditComponent,
     PhotoEditorComponent,
     TextInputComponent,
-    DateInputComponent,  
+    DateInputComponent,
+      
       
   ],
   imports: [
@@ -52,7 +53,8 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi: true},
@@ -60,6 +62,8 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     {provide: HTTP_INTERCEPTORS,useClass: LoadingInterceptor,multi: true}
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+  ]
 })
 export class AppModule { }
