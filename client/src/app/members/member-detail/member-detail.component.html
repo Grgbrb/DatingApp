@@ -1,5 +1,4 @@
-
-<div *ngIf="member" class="row">
+<div  class="row">
     <div class="col-4">
         <div class="card">
             <img src="{{member.photoUrl || 'assets/user.png'}}" alt="{{member.knownAs}}" class="card-img-top img-thumbnail">
@@ -27,33 +26,45 @@
             </div>
             <div class="card-footer">
                 <div class="btn-group d-flex">
-                    <button class="btn btn-primary">Like</button>
-                    <button class="btn btn-success">Message </button>
+                    <button class="btn btn-primary" >Like</button>
+                    <button class="btn btn-success" (click)="selectTab(3)">Message </button>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-8">
-        <tabset class="member-tabset">
-            <tab heading='About {{member.knownAs}}'>
+        <tabset class="member-tabset" #memberTabs>
+            <tab heading='About {{member.knownAs}}' (selectTab)="onTabActivated($event)">
                 <h4>Description</h4>
                 <p>{{member.introduction}}</p>
                 <h4>Looking For</h4>
                 <p>{{member.lookingFor}}</p>
             </tab>
-            <tab heading='Interests of {{member.knownAs}}'>
+            <tab heading='Interests' (selectTab)="onTabActivated($event)">
                 <h4>Interests</h4>
                 <p>{{member.interests}}</p>
             </tab>
-            <tab heading='Photos of {{member.knownAs}}'>
-                <h4>We are working on it</h4>
+            <tab heading='Photos' (selectTab)="onTabActivated($event)">
                 <ngx-gallery style="display: inline-block;margin-bottom: 30px;"[options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
 
             </tab>
-            <tab heading='Messages of {{member.knownAs}}'>
-                <h4>We are working on it</h4>
+            <tab heading='Messages' (selectTab)="onTabActivated($event)">
+                <app-member-messages [messages]="messages" [username]="member.username"></app-member-messages>
             </tab>
-           
         </tabset>
+        <footer class="d-flex justify-content-center" *ngIf="pagination && !loading" (selectTab)="onTabActivated($event)">
+            <pagination 
+            [boundaryLinks]="true" 
+            [totalItems]="pagination.totalItems"
+            [itemsPerPage]="pagination.itemsPerPage"
+            [(ngModel)]="pagination.currentPage"
+            (pageChanged)="pageChanged($event)"
+            previousText="&lsaquo;" 
+            nextText="&rsaquo;" 
+            firstText="&laquo;" 
+            lastText="&raquo;">
+            </pagination>
+        </footer>
     </div>
 </div>
+
