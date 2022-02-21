@@ -17,7 +17,7 @@ using API.Helpers;
 namespace API.Controllers
 {
     [Authorize]
-    [AllowAnonymous]
+    //[AllowAnonymous]
 
 
     public class UsersController : BasicApiController
@@ -34,6 +34,7 @@ namespace API.Controllers
             
         }
 
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
@@ -41,7 +42,9 @@ namespace API.Controllers
             
             userParams.CurrentUsername = user.UserName;
 
-            if (string.IsNullOrEmpty(userParams.Gender)) userParams.Gender = user.Gender == "male" ? "female" : "male";
+            if (string.IsNullOrEmpty(userParams.Gender)) {
+                userParams.Gender = (user.Gender == "male") ? "female" : "male";
+            }
 
             var users = await  _userRepository.GetMembersAsync(userParams);
 
@@ -49,7 +52,9 @@ namespace API.Controllers
 
             return Ok(users);
         }
+        
 
+        
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
