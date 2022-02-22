@@ -8,7 +8,7 @@ namespace API.Helpers
     public class MessageMemberParams : PaginationParams
     {
 
-         public string currentUsername  { get; set; }
+        public string currentUsername  { get; set; }
 
         public string recipientUsername { get; set; }  
     }
