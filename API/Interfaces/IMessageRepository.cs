@@ -29,6 +29,5 @@ namespace API.Interfaces
 
         Task<PagedList<MessageDto>> GetMessageThread(MessageMemberParams messageMemberParams);
 
-        Task<bool> SaveAllAsync();
     }
 }

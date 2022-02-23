@@ -66,5 +66,7 @@ namespace API.Data
             .OnDelete(DeleteBehavior.Restrict);
         }
         public DbSet<Message> Messages { get; set; }
+
+        
     }
 }
